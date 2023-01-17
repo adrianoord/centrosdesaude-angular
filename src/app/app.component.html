@@ -1,0 +1,133 @@
+<div class="primeiraPagina">
+  <div class="cabecalho"><a target="_blank" href="http://www.pmf.sc.gov.br/"><img class="logo_pmf"
+        [src]="assets_path + 'images/logo_pmf.png'"></a></div>
+  <div class="titulo">
+    <h2>Contatos das Unidades de Saúde</h2>
+  </div>
+</div>
+
+<div class="lista-accordion">
+  <mat-accordion class="first-accordion">
+    <mat-expansion-panel #refEl *ngFor="let item of CSs" hideToggle
+      [ngStyle]="{'background-color':item.tipoUnidade=='poli'?'#00D3EC':item.tipoUnidade=='upa'?'#00E8C0':item.tipoUnidade=='caps'?'#00B7FE':'cornflowerblue'}"
+      (afterExpand)="focus(refEl)">
+      <div class="enderecoDiv">
+        <img [src]="assets_path + 'images/maps.png'" class="iconSmall">
+        <a target="_blank" [href]="item.endereco">Como chegar</a>
+      </div>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{item.nome}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-accordion class="menuInterno">
+        <mat-expansion-panel hideToggle *ngIf="item.tipoUnidade=='cs'" class="corPrimaryCs">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Cadastro
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="conteudo" class="conteudoFazerCadastro">
+            <p class="textoGeral">Agora você pode se cadastrar pelo celular ou computador, sem sair de casa:</p>
+            <div class="centralizar">
+              <span *ngIf="item.linkCadastro" class="linkCadastro"><a target="_blank"
+                  [href]="item.linkCadastro">Clicando Aqui</a>
+              </span>
+              <span *ngIf="item.linkCadastro" class="linkCadastro">
+                ou
+              </span>
+              <span class="zapCadastro">
+                <img [src]="assets_path + 'images/WhatsApp-icon.png'" class="zapIcon">
+                <a target="_blank"
+                  [href]="'http://api.whatsapp.com/send?1=pt_BR&amp;phone=' + item.zapCadastro">{{(item.zapCadastro?item.zapCadastro:"")
+                  | telformat}}</a>
+              </span>
+            </div>
+            <p class="textoGeral">Tenha em mãos um documento válido com CPF e um comprovante de residência.</p>
+            <div class="finalsecao"></div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle
+          [ngClass]="item.tipoUnidade=='poli'?'corPrimaryPoli':item.tipoUnidade=='upa'?'corPrimaryUpa':item.tipoUnidade=='caps'?'corPrimaryCaps':'corPrimaryCs'">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Contatos {{item.tipoUnidade=='cs'?'das Equipes':'' }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="conteudo" id="conteudoFalarComEquipe" style="display: block;">
+            <p class="textoGeral">{{item.tipoUnidade=='cs'?'Fale com sua Equipe pelo Whatsapp ou Email:': ''}} </p>
+            <div class="centralizar equipeDiv" *ngFor="let equipe of item.equipes">
+              <span class="nEquipe">{{(equipe.descricao?equipe.descricao:'Equipe '+equipe.idEquipe+' -
+                '+equipe.cor)}}</span>
+              <div class="zapEquipe" *ngFor="let contato of equipe.contatos">
+                <img [src]="assets_path + 'images/'+(contato.tel_icon=='zap'?'WhatsApp-icon.png':'phone.png')"
+                  [class]="contato.tel_icon=='zap'?'zapIcon':'iconSmall'">
+                <a target="_blank" *ngIf="contato.tel_icon=='zap'"
+                  [href]="'http://api.whatsapp.com/send?1=pt_BR&amp;phone='+contato.tel_num">{{contato.tel_num |
+                  telformat}}</a>
+                <a *ngIf="contato.tel_icon!='zap'" [href]="'tel:'+contato.tel_num">{{contato.tel_num | telformat}}</a>
+              </div>
+              <div class="mailEquipe" *ngIf="equipe.email">
+                <img [src]="assets_path + 'images/Email512.png'" class="iconSmall">
+                <a [href]="'mailto:'+equipe.email">{{equipe.email}}</a>
+              </div>
+            </div>
+            <div class="finalsecao"></div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle *ngIf="item.servicos"
+          [ngClass]="item.tipoUnidade=='poli'?'corPrimaryPoli':item.tipoUnidade=='upa'?'corPrimaryUpa':item.tipoUnidade=='caps'?'corPrimaryCaps':'corPrimaryCs'">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Serviços
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="conteudo" id="conteudoOutrosAssuntos" style="display: block;">
+            <div class="centralizar servicosDiv" *ngFor="let servico of item.servicos">
+              <span class="servtitle" id="servico">{{servico.descricao}}</span>
+              <span class="servnumber" id="contatoServico" *ngFor="let contato of servico.contatos">
+                <img [src]="assets_path + 'images/'+(contato.tel_icon=='zap'?'WhatsApp-icon.png':'phone.png')"
+                  [class]="contato.tel_icon=='zap'?'zapIcon':'iconSmall'">
+                <a target="_blank" *ngIf="contato.tel_icon=='zap'"
+                  [href]="'http://api.whatsapp.com/send?1=pt_BR&amp;phone='+contato.tel_num">{{contato.tel_num |
+                  telformat}}</a>
+                <a *ngIf="contato.tel_icon!='zap'" [href]="'tel:'+contato.tel_num">{{contato.tel_num | telformat}}</a>
+              </span>
+            </div>
+            <div *ngIf="item.emailCoord" class="centralizar servicosDiv">
+              <span class="servtitle" id="servico">Coordenação</span>
+              <div class="coordenacao">
+                <img [src]="assets_path + 'images/Email512.png'" class="iconSmall">
+                <a [href]="'mailto:'+item.emailCoord">{{item.emailCoord}}</a>
+              </div>
+            </div>
+            <div class="finalsecao"></div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle *ngIf="item.social"
+          [ngClass]="item.tipoUnidade=='poli'?'corPrimaryPoli':item.tipoUnidade=='upa'?'corPrimaryUpa':item.tipoUnidade=='caps'?'corPrimaryCaps':'corPrimaryCs'">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Redes Sociais e Links
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="conteudo" id="conteudoRedesSociais" style="display: block;">
+            <div class="centralizar socialDiv" *ngFor="let social of item.social">
+              <span class="servtitle" id="redeSocial1">
+                <img *ngIf="social.rede=='linktree'" [src]="assets_path + 'images/linktree.png'" class="iconSmall">
+                <a target="_blank" *ngIf="social.rede=='linktree'" [href]="social.link">LinkTree</a>
+
+                <img *ngIf="social.rede=='facebook'" [src]="assets_path + 'images/face.png'" class="iconSmall">
+                <a target="_blank" *ngIf="social.rede=='facebook'" [href]="social.link">Facebook</a>
+
+                <img *ngIf="social.rede=='instagram'" [src]="assets_path + 'images/insta.png'" class="iconSmall">
+                <a target="_blank" *ngIf="social.rede=='instagram'" [href]="social.link">Instagram</a>
+              </span>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>

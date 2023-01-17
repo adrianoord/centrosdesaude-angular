@@ -1,0 +1,154 @@
+html, body {
+    width: 100%;
+}
+
+::ng-deep {
+    .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+        background-color: cornflowerblue;
+    }
+    .primeiraPagina {
+        width: 320px;
+        font-family: calibri !important;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+
+        ;
+        .cabecalho{
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .logo_pmf{
+            width:150px;
+        }
+
+        h2{
+            font-family: calibri !important;
+            text-align:center;
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            margin-block-start: 0.83em;
+            margin-block-end: 0.83em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
+    }
+    .lista-accordion {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        background-color: #fcfcfc00;
+        mat-accordion.first-accordion {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 400px;
+            mat-expansion-panel {
+                background-color: cornflowerblue;
+                border-radius: 4px !important;
+                margin-top: 10px !important;
+                width: 100%;
+                mat-panel-title {
+                    justify-content: center;
+                }
+                .conteudoFazerCadastro {
+                    padding: 10px;
+                }
+                .mat-expansion-panel-header-title {
+                    color: white;
+                    font-family: calibri;
+                    font-weight: 600;
+                    font-size: 20px;
+                }
+                .mat-expansion-panel-content {
+                    background-color: white !important;
+                    font-family: calibri;
+                }
+                .mat-content {
+                    height: 21px;
+                }
+            }
+        }
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.zapCadastro {
+    font-weight: 600;
+    color: #555555;
+    font-size: 18px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 16px;
+}
+
+.zapEquipe, .servnumber {
+    font-weight: 600;
+    color: #555555;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.mailEquipe, .coordenacao {
+    display: flex;
+    align-items: center;
+}
+
+.conteudo {
+    padding-top: 10px;
+}
+
+.nEquipe, .servtitle {
+    font-weight: 600;
+    color: #0297FF;
+    font-size: 20px;
+    text-align: center;
+}
+
+.equipeDiv, .servicosDiv, .socialDiv, .enderecoDiv {
+    margin-top: 16px;
+    line-height: 200%;
+}
+
+.socialDiv {
+    .iconSmall {
+        margin-bottom: -1px;
+    }
+}
+
+.enderecoDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuInterno {
+  .corPrimaryCs {
+    background-color: cornflowerblue;
+  }
+
+  .corPrimaryUpa{
+    background-color: #00E8C0;
+  }
+
+  .corPrimaryCaps{
+    background-color: #00B7FE ;
+  }
+
+  .corPrimaryPoli{
+    background-color: #00D3EC;
+  }
+}
