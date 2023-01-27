@@ -57,8 +57,7 @@
           <div class="conteudo" id="conteudoFalarComEquipe" style="display: block;">
             <p class="textoGeral">{{item.tipoUnidade=='cs'?'Fale com sua Equipe pelo Whatsapp ou Email:': ''}} </p>
             <div class="centralizar equipeDiv" *ngFor="let equipe of item.equipes">
-              <span class="nEquipe">{{(equipe.descricao?equipe.descricao:'Equipe '+equipe.idEquipe+' -
-                '+equipe.cor)}}</span>
+              <span class="nEquipe">{{(equipe.descricao?equipe.descricao:'Equipe '+equipe.idEquipe+' - '+equipe.cor)}}</span>
               <div class="zapEquipe" *ngFor="let contato of equipe.contatos">
                 <img [src]="assets_path + 'images/'+(contato.tel_icon=='zap'?'WhatsApp-icon.png':'phone.png')"
                   [class]="contato.tel_icon=='zap'?'zapIcon':'iconSmall'">
